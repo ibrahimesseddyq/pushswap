@@ -1,11 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 #include <string.h>
 #include "parser.h"
 char	*ft_strdup(const char *src);
 size_t	ft_strlcpy(char *dst, const char *src, size_t len);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlen(const char *str);
+int	ft_atoi(const char *str);
+int checkifminusone(char *str)
+{
+
+	if(str[0] == '-' && str[1] == '1' && !str[2])
+		return (1);
+	return (0);
+}
 t_strings	*strs_to_str(char **strs, int len)
 {
     int i = 0;
@@ -61,9 +70,9 @@ t_strings	*strs_to_str(char **strs, int len)
 }
 int invalid_char(char c)
 {
-	if((c < 48 || c > 57) && (c != '+' || c != '-'))
-		return (INVALID_CHAR);
-	return (SUCCESS);
+	if((c >= '0' && c <= '9') || c == '+' || c == '-')
+		return (SUCCESS);
+	return (INVALID_CHAR);
 }
 int check_invalid_chars(char	*str)
 {
@@ -72,7 +81,7 @@ int check_invalid_chars(char	*str)
 	{
 		if (invalid_char(str[i]) == INVALID_CHAR)
 		{
-			printf("%c\n", str[i]);
+			// printf("%c\n", str[i]);
 			return (INVALID_CHAR);
 
 		}
@@ -80,13 +89,49 @@ int check_invalid_chars(char	*str)
 	}
 	return (SUCCESS);
 }
+int is_digit(char c){
+	if(c >= '0' && c <= '9')
+		return (1);
+	else 
+		return (0);
+}
+int is_number(const char *str) {
+    if (*str == '\0') {
+        return -1;
+    }
+
+    if (*str == '-' || *str == '+') {
+        str++;
+    }
+
+    int has_digits = 0;
+    while (*str) {
+        if (!is_digit(*str)) {
+            return -1;
+        }
+        has_digits = 1;
+        str++;
+    }
+
+    return has_digits ? 1 : -1;
+}
 int check_validity(t_strings *strs)
 {
 	int i = 0;
+	long long nb;
+	int ismo;
 	while(i < strs->size)
 	{
+		ismo = checkifminusone(strs->strs[i]);
+		// printf("[%d]",ismo);
 		if (check_invalid_chars(strs->strs[i]) == INVALID_CHAR)
 			return (ERROR);
+		if (is_number(strs->strs[i]) == NOT_ANUMBER)
+			return (ERROR);
+		nb = ft_atoi(strs->strs[i]);
+		if (nb == -1 && ismo == 0)
+			return (ERROR);
+		// printf("[%lld]{%s}",nb, strs->strs[i], );
 		i++;
 	}
 	return (SUCCESS);
@@ -149,13 +194,16 @@ int main(int ac, char **av) {
     }
 
     int i = 0;
+	// s_swap *lst;
     t_strings *str = strs_to_str(av + 1, ac - 1);
 	if (check_validity(str) == ERROR)
 	{
 		printf("format invalid");
 		return (0);
 	}
-    if (str == NULL) {
+	// list = store_in_linked_list(str);
+    if (str == NULL)
+	{
         printf("Error allocating memory.\n");
         return 1;
     }
