@@ -1,4 +1,4 @@
-#include "pushswap.h"
+#include "./../pushswap.h"
 
 void	push_a(t_list_stack *stack_a, t_list_stack *stack_b, int printable)
 {

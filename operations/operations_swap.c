@@ -1,4 +1,4 @@
-#include "pushswap.h"
+#include "./../pushswap.h"
 
 void	swap_a(t_list_stack *stack, int printable)
 {
@@ -28,9 +28,10 @@ void	swap_b(t_list_stack *stack, int printable)
 	if (printable == PRINT)
 		printf("sb\n");
 }
-void	swap_ab(t_list_stack *stack_a, t_list_stack *stack_b)
+void	swap_ab(t_list_stack *stack_a, t_list_stack *stack_b, int printable)
 {
 	swap_a(stack_a, DONT_PRINT);
 	swap_b(stack_b, DONT_PRINT);
-	printf("ss\n");
+	if (printable == PRINT)
+		printf("ss\n");
 }

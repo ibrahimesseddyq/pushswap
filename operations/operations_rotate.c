@@ -1,4 +1,4 @@
-#include "pushswap.h"
+#include "./../pushswap.h"
 
 void	rotate_a(t_list_stack *stack, int printable)
 {
@@ -34,9 +34,10 @@ void	rotate_b(t_list_stack *stack, int printable)
 	if(printable == PRINT)
 		printf("rb\n");
 }
-void	rotate_ab(t_list_stack *stack_a, t_list_stack *stack_b)
+void	rotate_ab(t_list_stack *stack_a, t_list_stack *stack_b, int printable)
 {
 	rotate_a(stack_a, DONT_PRINT);
 	rotate_b(stack_b, DONT_PRINT);
-	printf("rr\n");
+	if (printable)
+		printf("rr\n");
 }

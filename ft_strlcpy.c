@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibes-sed <ibes-sed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 00:14:48 by ibes-sed          #+#    #+#             */
-/*   Updated: 2023/11/12 00:14:49 by ibes-sed         ###   ########.fr       */
+/*   Created: 2023/11/12 01:27:36 by ibes-sed          #+#    #+#             */
+/*   Updated: 2023/11/28 22:44:40 by ibes-sed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+size_t	ft_strlcpy(char *dst, const char *src, size_t len)
 {
-	t_list	*index;
+	size_t	i;
+	size_t	j;
 
-	index = (t_list *)malloc(sizeof(t_list));
-	if (!index)
-		return (NULL);
-	index -> content = content;
-	index -> next = NULL;
-	return (index);
+	i = 0;
+	j = 0;
+	while (src[j] != '\0')
+		j++;
+	if (len == 0)
+		return (j);
+	while (src[i] && i < len - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (j);
 }

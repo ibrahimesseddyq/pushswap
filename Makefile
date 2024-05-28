@@ -1,0 +1,25 @@
+PUSHSWAP = push_swap
+CHECKER = checker
+SRC = 
+OPS_SRC = operations/operations_stack.c operations/operations_push.c operations/operations_rotate.c operations/operations_rrotate.c operations/operations_swap.c
+UTILS_SRC = utils/ft_lstadd_back.c utils/ft_lstnew.c
+LIBFT_SRC = ft_strlen.c ft_atoi.c get_next_line.c
+SRC_BONUS = checker.c parser.c $(OPS_SRC)
+FLAGS = 
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
+
+bonus: $(CHECKER)
+
+$(CHECKER): $(OBJ_BONUS)
+	gcc $(FLAGS) $(LIBFT_SRC) $(UTILS_SRC) $(OBJ_BONUS) -o $(CHECKER)
+
+%.o: %.c
+	gcc $(FLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJ_BONUS)
+
+fclean: clean
+	rm -f $(CHECKER)
+
+re: fclean bonus
