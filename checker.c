@@ -187,7 +187,10 @@ int check_operation(char *line) {
     else if (line[0] == 'r' && line[1] == 'r')
         return ROTATE_AB;
     else if (line[0] == 'r' && line[1] == 'a')
+	{
+		printf("rotated A\n");
         return ROTATE_A;
+	}
     else if (line[0] == 'r' && line[1] == 'b')
         return ROTATE_B;
     else
@@ -213,13 +216,16 @@ void operate_push(int operation, t_list_stack *stack_a, t_list_stack *stack_b) {
 }
 
 void operate_rotate(int operation, t_list_stack *stack_a, t_list_stack *stack_b) {
-    if (operation == ROTATE_A) {
+    printf("begin rotate\n");
+
+	if (operation == ROTATE_A) {
         rotate_a(stack_a, DONT_PRINT);
     } else if (operation == ROTATE_B) {
         rotate_b(stack_b, DONT_PRINT);
     } else if (operation == ROTATE_AB) {
         rotate_ab(stack_a, stack_b, DONT_PRINT);
     }
+	printf("end rotate\n");
 }
 
 void operate_rrotate(int operation, t_list_stack *stack_a, t_list_stack *stack_b) {
@@ -231,9 +237,25 @@ void operate_rrotate(int operation, t_list_stack *stack_a, t_list_stack *stack_b
         reverse_rotate_ab(stack_a, stack_b, DONT_PRINT);
     }
 }
-
+void ensure_stack_initialized(t_list_stack *stack) {
+    if (stack == NULL) {
+        printf("Stack is NULL\n");
+        return;
+    }
+    if (stack->stack == NULL) {
+        stack->stack = malloc(sizeof(t_list));
+        if (!stack->stack) {
+            perror("Failed to allocate memory for stack->stack");
+            exit(EXIT_FAILURE);
+        }
+        stack->stack->next = NULL;
+        stack->size = 0;
+    }
+}
 int operate(char *line, t_list_stack *stack_a, t_list_stack *stack_b) {
     int operation = check_operation(line);
+
+	printf("op :%d\n", operation);
     if (operation == ERROR)
         return ERROR;
     if (operation == SWAP_A || operation == SWAP_B || operation == SWAP_AB) {
@@ -249,20 +271,25 @@ int operate(char *line, t_list_stack *stack_a, t_list_stack *stack_b) {
 }
 
 int process_check(t_list_stack *stack_a, t_list_stack *stack_b) {
+	printf("entered process check\n");
     char *line;
-    int i = 0;
 
-    while ((line = get_next_line(0)) != NULL) {
+	line = get_next_line(0);
+    while ((line) != NULL)
+	{
+		printf("line is %s\n",line);
         if (*line == '\n') {
             free(line);
             break;
         }
+		printf("will enter operate\n");
         if (operate(line, stack_a, stack_b) == ERROR) {
             free(line);
             return ERROR;
         }
-        free(line);
-        i++;
+		printf("exit operate\n");
+		line = get_next_line(0);
+        // free(line);
     }
     return 1;
 }
@@ -284,18 +311,55 @@ void check_if_sorted(t_list_stack *stack) {
     printf("OK\n");
 }
 
-int main(int ac, char **av) {
+// int main(int ac, char **av) {
+//     t_list_stack *stack_a;
+//     t_list_stack *stack_b;
+// 	int i = 0;
+
+//     stack_a = process_parse(ac, av);
+// 	while (!stack_a->stack)
+// 	{
+// 		printf("nbr is %d\n", stack_a->stack->content);
+// 		stack_a->stack = stack_a->stack->next;
+// 	}
+//     // free(str);
+//     stack_b = malloc(sizeof(t_list_stack));
+//     if (!stack_b) {
+//         free(stack_a);
+//         return ERROR;
+//     }
+// 	printf("stack b alloced\n");
+//     process_check(stack_a, stack_b);
+//     // check_if_sorted(stack_a);
+//     free(stack_a);
+//     free(stack_b);
+//     return 0;
+// }
+int main(int ac, char **av)
+{
     t_list_stack *stack_a;
     t_list_stack *stack_b;
+    t_list *current;
+	t_list *tmp;
+    int i = 0;
 
     stack_a = process_parse(ac, av);
+
+    current = stack_a->stack; // Assign the head of the stack to current
+	tmp  = current;
+    while (tmp != NULL) {
+        printf("2- nbr is %d\n", tmp->content);
+        tmp = tmp->next;
+    }
+
     stack_b = malloc(sizeof(t_list_stack));
     if (!stack_b) {
         free(stack_a);
         return ERROR;
     }
+    printf("stack b alloced\n");
     process_check(stack_a, stack_b);
-    check_if_sorted(stack_a);
+	check_if_sorted(stack_a);
     free(stack_a);
     free(stack_b);
     return 0;

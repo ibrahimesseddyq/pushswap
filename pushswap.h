@@ -15,25 +15,28 @@
 # define SUCCESS		 1
 # define ERROR		 -1337
 # define SWAP_A		 1
-# define SWAP_B		 1
-# define SWAP_AB		 1
-# define PUSH_A		 1
-# define PUSH_B		 1
-# define PUSH_AB		 1
-# define ROTATE_A		 1
-# define ROTATE_B		 1
-# define ROTATE_AB		 1
-# define RROTATE_B		 1
-# define RROTATE_A		 1
-# define RROTATE_AB		 1
+# define SWAP_B		 2
+# define SWAP_AB	 3
+# define PUSH_A		 4
+# define PUSH_B		 5
+# define PUSH_AB	 6
+# define ROTATE_A	 7
+# define ROTATE_B	 8
+# define ROTATE_AB	 9
+# define RROTATE_B	 10
+# define RROTATE_A	 11
+# define RROTATE_AB	 12
 
 typedef struct s_strings
 	{
 		char **strs;
 		int size;
 	} t_strings;
+
+	
 typedef struct s_list
 {
+	int index;
 	int				content;
 	struct s_list	*next;
 }	t_list;
