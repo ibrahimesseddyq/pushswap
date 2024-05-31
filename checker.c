@@ -347,20 +347,21 @@ int main(int ac, char **av)
 
     current = stack_a->stack; // Assign the head of the stack to current
 	tmp  = current;
-    while (tmp != NULL) {
-        printf("2- nbr is %d\n", tmp->content);
-        tmp = tmp->next;
-    }
+    // while (tmp != NULL) {
+    //     printf("2- nbr is %d\n", tmp->content);
+    //     tmp = tmp->next;
+    // }
 
     stack_b = malloc(sizeof(t_list_stack));
     if (!stack_b) {
         free(stack_a);
         return ERROR;
     }
-    printf("stack b alloced\n");
-    process_check(stack_a, stack_b);
-	check_if_sorted(stack_a);
-    free(stack_a);
-    free(stack_b);
-    return 0;
+	solve_more_than_5(stack_a, stack_b);
+    // printf("stack b alloced\n");
+    // process_check(stack_a, stack_b);
+	// check_if_sorted(stack_a);
+    // free(stack_a);
+    // free(stack_b);
+    // return 0;
 }

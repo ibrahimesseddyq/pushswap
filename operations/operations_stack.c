@@ -9,13 +9,13 @@ t_list_stack *fill_stack(t_strings *strings) {
     stack = malloc(sizeof(t_list_stack));
     if (!stack)
         return NULL;
-    stack->stack = NULL; // Initialize stack pointer to NULL
+    stack->stack = NULL;
     i = 0;
     while (i < strings->size) {
         node = ft_lstnew(ft_atoi(strings->strs[i]));
         if (!node) {
-            // Free any previously allocated nodes and the stack in case of an error
-            while (stack->stack) {
+            while (stack->stack)
+			{
                 temp_node = stack->stack->next;
                 free(stack->stack);
                 stack->stack = temp_node;
@@ -28,7 +28,6 @@ t_list_stack *fill_stack(t_strings *strings) {
     }
     stack->size = strings->size;
 
-    // Print stack contents for debugging without altering the original stack pointer
     temp_node = stack->stack;
     while (temp_node) {
         printf("nbr in stack %d\n", temp_node->content);

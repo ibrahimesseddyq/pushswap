@@ -195,6 +195,7 @@ t_list_stack *process_parse(int ac, char **av)
     }
 
     int i = 0;
+	int size = 0;
 	t_list_stack *lst;
 	t_list *tmp;
     t_strings *str = strs_to_str(av + 1, ac - 1);
@@ -215,9 +216,19 @@ t_list_stack *process_parse(int ac, char **av)
 	while (tmp)
 	{
 		printf("nbr is %d\n", tmp->content);
+		size++;
+		tmp = tmp->next;
+	}
+	printf("size is %d\n", size);
+
+	tmp = lst->stack;
+	while (size--)
+	{
+		tmp->index_in_stack = size;
 		tmp = tmp->next;
 	}
     free(str);
+	lst->size = size;
     return lst;
 }
 // int main(int ac, char **av)

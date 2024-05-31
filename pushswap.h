@@ -36,7 +36,8 @@ typedef struct s_strings
 	
 typedef struct s_list
 {
-	int index;
+	int				index_in_stack;
+	int				index;
 	int				content;
 	struct s_list	*next;
 }	t_list;
@@ -69,4 +70,5 @@ t_list_stack *process_parse(int ac, char **av);
 char *get_next_line(int fd);
 int	ft_atoi(const char *str);
 size_t	ft_strlen(const char *str);
+void solve_more_than_5(t_list_stack *stack_a, t_list_stack *stack_b);
 #endif
