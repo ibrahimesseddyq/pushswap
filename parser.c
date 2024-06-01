@@ -65,7 +65,7 @@ t_strings	*strs_to_str(char **strs, int len)
         free(tmp);
         i++;
     }
-		printf("size is:%d\n",totalsize);
+		// printf("size is:%d\n",totalsize);
     result[h] = NULL;
 	strings->strs = result;
     return strings;
@@ -215,11 +215,12 @@ t_list_stack *process_parse(int ac, char **av)
     }
 	while (tmp)
 	{
-		printf("nbr is %d\n", tmp->content);
+		// printf("nbr is %d\n", tmp->content);
 		size++;
 		tmp = tmp->next;
 	}
-	printf("size is %d\n", size);
+	// printf("size is %d\n", size);
+	lst->size = size;
 
 	tmp = lst->stack;
 	while (size--)
@@ -228,7 +229,7 @@ t_list_stack *process_parse(int ac, char **av)
 		tmp = tmp->next;
 	}
     free(str);
-	lst->size = size;
+
     return lst;
 }
 // int main(int ac, char **av)

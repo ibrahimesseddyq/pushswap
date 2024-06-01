@@ -358,6 +358,7 @@ int main(int ac, char **av)
         return ERROR;
     }
 	solve_more_than_5(stack_a, stack_b);
+	// this is checker
     // printf("stack b alloced\n");
     // process_check(stack_a, stack_b);
 	// check_if_sorted(stack_a);

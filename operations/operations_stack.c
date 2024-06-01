@@ -28,11 +28,11 @@ t_list_stack *fill_stack(t_strings *strings) {
     }
     stack->size = strings->size;
 
-    temp_node = stack->stack;
-    while (temp_node) {
-        printf("nbr in stack %d\n", temp_node->content);
-        temp_node = temp_node->next;
-    }
+    // temp_node = stack->stack;
+    // while (temp_node) {
+    //     printf("nbr in stack %d\n", temp_node->content);
+    //     temp_node = temp_node->next;
+    // }
 
     return stack;
 }
