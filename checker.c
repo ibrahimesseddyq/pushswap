@@ -352,11 +352,12 @@ int main(int ac, char **av)
     //     tmp = tmp->next;
     // }
 
-    stack_b = malloc(sizeof(t_list_stack));
+    stack_b = calloc(1, sizeof(t_list_stack));
     if (!stack_b) {
         free(stack_a);
         return ERROR;
     }
+
 	solve_more_than_5(stack_a, stack_b);
 	// this is checker
     // printf("stack b alloced\n");

@@ -72,4 +72,5 @@ int	ft_atoi(const char *str);
 size_t	ft_strlen(const char *str);
 void solve_more_than_5(t_list_stack *stack_a, t_list_stack *stack_b);
 void index_list(t_list **head);
+void print_list(t_list **head);
 #endif

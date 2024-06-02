@@ -19,18 +19,20 @@ void push_b(t_list_stack *stack_a, t_list_stack *stack_b, int printable)
     if (printable == PRINT)
         printf("pb\n");
 
-    printf("stack_a size: %d, stack_b size: %d\n", stack_a->size, stack_b->size);
-    printf("stack_a head: %p, stack_b head: %p\n", (void*)stack_a->stack, (void*)stack_b->stack);
-
     tmp = stack_a->stack;
-    if (tmp)
-        index_list(&tmp);
+
+	// exit(0);
+		// printf("\n------\n");
+    index_list(&tmp);
 
     tmp = stack_b->stack;
-    if (tmp)
-        index_list(&tmp);
-
-    printf("indices updated\n");
+	// printf("\n------\n");
+    index_list(&tmp);
+	// 	printf("\n------\n");
+	// print_list(&(stack_a->stack));
+	// printf("\n------\n");
+	// print_list(&(stack_b->stack));
+    // printf("indices updated\n");
 }
 
 void push_a(t_list_stack *stack_a, t_list_stack *stack_b, int printable)
