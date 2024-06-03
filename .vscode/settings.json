@@ -2,6 +2,7 @@
 	"files.associations": {
 		"pushswap.h": "c",
 		"stdlib.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"stack": "c"
 	}
 }

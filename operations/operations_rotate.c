@@ -21,7 +21,7 @@ void rotate_a(t_list_stack *stack, int printable)
     if (printable == PRINT)
         printf("ra\n");
 
-    index_list(&(stack->stack));
+    index_list(&(stack->stack), INDEX_ON_STACK);
 }
 
 
@@ -47,7 +47,7 @@ void	rotate_b(t_list_stack *stack, int printable)
     if (printable == PRINT)
         printf("ra\n");
 
-    index_list(&(stack->stack));
+    index_list(&(stack->stack), INDEX_ON_STACK);
 
 }
 void	rotate_ab(t_list_stack *stack_a, t_list_stack *stack_b, int printable)
@@ -56,6 +56,4 @@ void	rotate_ab(t_list_stack *stack_a, t_list_stack *stack_b, int printable)
 	rotate_b(stack_b, DONT_PRINT);
 	if (printable)
 		printf("rr\n");
-	index_list(&(stack_a->stack));
-	index_list(&(stack_b->stack));
 }

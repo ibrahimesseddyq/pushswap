@@ -6,11 +6,10 @@
 /*   By: ibes-sed <ibes-sed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 01:27:36 by ibes-sed          #+#    #+#             */
-/*   Updated: 2023/11/28 22:44:40 by ibes-sed         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:43:05 by ibes-sed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t len)
 {

@@ -23,7 +23,7 @@ void reverse_rotate_a(t_list_stack *stack, int printable)
     if (printable == PRINT)
         printf("rra\n");
 
-    index_list(&(stack->stack));
+    index_list(&(stack->stack), INDEX_ON_STACK);
 }
 
 
@@ -50,7 +50,7 @@ void reverse_rotate_b(t_list_stack *stack, int printable)
     if (printable == PRINT)
         printf("rra\n");
 
-    index_list(&(stack->stack));
+    index_list(&(stack->stack), INDEX_ON_STACK);
 }
 
 

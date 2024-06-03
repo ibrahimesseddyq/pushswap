@@ -26,6 +26,8 @@
 # define RROTATE_B	 10
 # define RROTATE_A	 11
 # define RROTATE_AB	 12
+# define INDEX_ON_STACK 55
+# define INDEX_ORDER 55
 
 typedef struct s_strings
 	{
@@ -71,6 +73,6 @@ char *get_next_line(int fd);
 int	ft_atoi(const char *str);
 size_t	ft_strlen(const char *str);
 void solve_more_than_5(t_list_stack *stack_a, t_list_stack *stack_b);
-void index_list(t_list **head);
+void index_list(t_list **head, int operation);
 void print_list(t_list **head);
 #endif
